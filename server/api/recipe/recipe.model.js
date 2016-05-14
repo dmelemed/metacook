@@ -5,7 +5,9 @@ var mongoose = require('mongoose'),
 
 var RecipeSchema = new Schema({
   name: String,
-  info: String,
+  author: String,
+  ingredients: String,
+  time: String,
   active: Boolean
 });
 
