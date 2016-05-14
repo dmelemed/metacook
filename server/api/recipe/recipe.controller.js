@@ -33,6 +33,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Recipe.create(req.body, function(err, Recipe) {
     if(err) { return handleError(res, err); }
+    console.log(Recipe);
     return res.status(201).json(Recipe);
   });
 };
