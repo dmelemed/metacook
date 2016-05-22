@@ -41,4 +41,22 @@ angular.module('metacookApp')
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
+
+    $scope.recipeUrl = {
+      url: ''
+    };
+
+    $scope.imageUrl = '';
+
+    $scope.getImage = function(recipeUrl) {
+      console.log('invoked');
+      console.log(recipeUrl);
+      $http.post('/api/ogImage', recipeUrl).success(function(result) {
+        //$scope.result = result;
+        console.log(result);
+        $scope.imageUrl = result.data.ogImage.url;
+      }).error(function() {
+        console.log('error');
+      });
+    };
   });

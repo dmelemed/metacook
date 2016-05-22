@@ -8,7 +8,8 @@ var RecipeSchema = new Schema({
   author: String,
   ingredients: String,
   time: String,
-  active: Boolean
+  active: Boolean,
+  imageUrl: String
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
