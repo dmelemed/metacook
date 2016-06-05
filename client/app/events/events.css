@@ -1,0 +1,52 @@
+.bg-grey {
+    background-color: #f2f2f2;
+}
+
+ul {
+    list-style: none;
+}
+
+.side-tab {
+    font-size: 6px;
+}
+
+md-tab-item {
+    padding: 8px 10px;
+    height: 30px;
+}
+
+md-pagination-wrapper {
+    height: 30px;
+}
+
+md-tabs-canvas {
+    height: 30px;
+}
+
+/*md-input-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}*/
+
+.no-margin-bottom {
+	margin-bottom: 0px;
+}
+
+.no-margin-top {
+	margin-top: 0px;
+}
+
+button {
+	height: 36px;
+}
+
+md-input-container .md-input {
+	padding-left: 10px;
+}
+
+#newEventCard {
+	padding: 8px;
+}
+/*md-chips-wrap {
+	box-shadow: 0 0px rgb(224,224,224);
+}*/

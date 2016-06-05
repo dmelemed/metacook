@@ -7,7 +7,9 @@ angular.module('metacookApp', [
   'ngAnimate',
   'ngMessages',
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'mdPickers',
+  'datetime'
 ])
   .config(function($mdIconProvider) {
     $mdIconProvider
@@ -27,7 +29,10 @@ angular.module('metacookApp', [
       .iconSet('notification', '../assets/iconsets/notification-icons.svg', 24)
       .iconSet('social', '../assets/iconsets/social-icons.svg', 24)
       .iconSet('toggle', '../assets/iconsets/toggle-icons.svg', 24)
-      .iconSet('avatar', '../assets/iconsets/avatar-icons.svg', 128);
+      .iconSet('avatar', '../assets/iconsets/avatar-icons.svg', 128)
+      .iconSet('material', '../assets/iconsets/mdi-icons.svg', 24);
+
+
   })
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

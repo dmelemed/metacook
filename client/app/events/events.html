@@ -1,0 +1,122 @@
+<div style="height: 100vh;" layout="row">
+    <!-- LEFT BAR -->
+    <section class="bg-grey" flex="30" layout="row">
+        <div flex></div>
+        <div flex="80" style="padding: 20px;" layout="column">
+            <div>
+                <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="date in browseBy">
+                    <!--                 <md-icon md-svg-icon="{{setting.icon}}"></md-icon> -->
+                    <p> {{ date }} </p>
+                </md-list-item>
+            </div>
+            <section>
+                <md-toolbar class="md-theme-light">
+                    <h2 class="md-toolbar-tools">
+                    <span>Categories</span>
+               </h2>
+                </md-toolbar>
+                <div>
+                    <md-list-item ng-style="{color: calendar.backgroundColor}" ng-repeat="calendar in calendars">
+                        <p> {{ calendar.summary }} </p>
+                    </md-list-item>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- MIDDLE SECTION -->
+    <section flex="60">
+        <md-toolbar md-scroll-shrink ng-if="true" class="md-accent">
+            <div class="md-toolbar-tools">
+                <h2 class="md-flex">Events</h2>
+            </div>
+        </md-toolbar>
+        <md-card id="newEventCard">
+            <form>
+                <div layout="row">
+                    <md-input-container class="no-margin-bottom" flex="80" style="margin-bottom: 0px; margin-right: 20px;">
+                        <label>A short title for your event</label>
+                        <input type="text" ng-model="calendarEvent.summary">
+                    </md-input-container>
+                    <md-input-container class="no-margin-bottom" flex style="float: right;">
+                        <label>Category</label>
+                        <md-select ng-model="calendarId">
+                            <md-option value="{{calendar.id}}" ng-repeat="calendar in calendars" ng-style="{color: category.color}">{{calendar.summary}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <!--                     <md-button class="md-icon-button" ng-click="showAlarmPrompt()" aria-label="Add Calendar" style="float: right; margin-top: 17px;">
+                        <md-icon md-svg-icon="material:calendar-plus"></md-icon> -->
+                    <!--                     </md-button>
+ -->
+                </div>
+                <div layout="row">
+                    <md-input-container class="no-margin-bottom no-margin-top" flex="80" style="float: right; margin-right: 20px;" ">
+                        <label style=" ">A description of your event</label>
+                        <input type="text " ng-model="calendarEvent.description ">
+                    </md-input-container>
+
+                    <md-input-container class="no-margin-bottom no-margin-top " flex>
+                        <label>Duration</label>
+                        <md-select ng-model="calendarEvent.durationInMinutes ">
+                            <md-option value="{{duration.durationInMinutes}} " ng-repeat="duration in durations ">{{duration.display}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <!--                     <md-button class="md-icon-button " aria-label="Alarm " style="float: right; margin-top: 17px; ">
+                        <md-icon md-svg-icon="action:alarm "></md-icon>
+                    </md-button> -->
+                    <!-- <md-datepicker flex ng-model="birthday "></md-datepicker> -->
+                </div>
+                <div layout="row ">
+<!--                     <md-button class="md-raised md-primary " ng-click="showDateTimePicker($event) " style="margin-rig  ht: 20px; ">Set time</md-button> -->
+                    <md-button class="md-icon-button" ng-click="showDateTimePicker($event)" aria-label="Set start date and time" style="">
+                        <md-icon md-svg-icon="material:calendar-clock" style="width: 100%; height: 100%;"></md-icon>
+                    </md-button>
+                    <md-input-container class="no-margin-bottom no-margin-top " style="margin-right: 20px; ">
+                        <label>When your event starts</label>
+                        <input type="text " datetime="EEEE, MMMM d, y " ng-model="calendarEvent.startDateTime ">
+                    </md-input-container>
+                    <md-input-container class="no-margin-bottom no-margin-top " style="margin-right: 20px; ">
+                        <label>When your event starts</label>
+                        <input type="text " datetime="h:mm a " ng-model="calendarEvent.startDateTime " readonly>
+                    </md-input-container>
+                    <!-- 
+                        <mdp-time-picker name="timeFormat " ng-model="calendarEvent.startTime " mdp-format="h:mm a ">
+                            <div ng-messages="demoForm.timeFormat.$error ">
+                                <div ng-message="required ">This is required</div>
+                                <div ng-message="format ">Invalid format</div>
+                            </div> 
+                        </mdp-time-picker>-->
+                </div>
+                <div>
+                    <md-button class="md-raised md-primary " ng-click="createEvent(calendarEvent, calendarId) ">Save</md-button>
+                    <md-button ng-click="clearEvent() ">Cancel</md-button>
+                </div>
+            </form>
+        </md-card>
+        <md-card>
+            <md-list>
+                <md-list-item class="md-3-line " ng-repeat="event in events ">
+                    <!--                     <img ng-src="{{item.face}} " alt="{{item.who}} " class="md-avatar "> -->
+                    <md-checkbox></md-checkbox>
+                    <div class="md-list-item-text ">
+                        <h3>{{event.summary}}</h3>
+                        <h4 ng-style="{ 'color': getCalendarColors(event.calendarId)} "> {{getCalendarNameById(event.calendarId)}}
+                        </h4>
+                        <!--                         <md-chips readonly="true ">
+                            <md-chip ng-style="{ 'color': getFontFromBackground(getCategoryColor(event.category)), 'background-color': getCategoryColor(event.category)} "> {{getEventCategoryById(event.category)}}
+                            </md-chip>
+                        </md-chips> -->
+                        <p>
+                            {{event.description}}
+                        </p>
+                    </div>
+                    <md-divider inset></md-divider>
+                </md-list-item>
+            </md-list>
+        </md-card>
+    </section>
+    <!-- RIGHT BAR -->
+    <section class="bg-grey " hide show-gt-sm flex>
+    </section>
+</div>
+<!-- <iframe src="https://calendar.google.com/calendar/embed?src=dmelemed3%40gmail.com&ctz=America/New_York " style="border: 0 " width="800 " height="600 " frameborder="0 " scrolling="no "></iframe>
+ -->
